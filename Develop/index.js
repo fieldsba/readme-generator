@@ -64,6 +64,38 @@ const promptQuestions = () => {
             name: 'testing',
             message: 'Please add the command used to test the data. (Note: default is npm test)',
             default: 'npm test'
+        },
+        {
+            type: 'input',
+            name: 'license',
+            message: 'Please select which type of license your project falls under.',
+            choices: ['MIT', 'GNU GPLv3', 'unlicensed'],
+            default: 'unlicensed'
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Please enter your email address.',
+            validate: emailInput => {
+                if (emailInput)
+                {return true;}
+                else
+                {console.log('You must enter installation instructions for your project.');
+                return false;}
+            }
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'Please enter your github username.',
+            validate: githubInput => {
+                if (emailInput)
+                {return true;}
+                else
+                {console.log('You must enter your github username');
+                    return false;
+                }
+            }
         }
 
 ])
