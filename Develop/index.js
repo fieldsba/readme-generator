@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
-const generatePage = require('./utils/generateMarkdown');
-const { writeFile, copyFile } = require('./utils/generate-site');
+const fs = require('fs');
+const generateMarkdown = require('./utils/generateMarkdown.js');
 
 // TODO: Create an array of questions for user input
 const promptQuestions = () => {
@@ -66,7 +66,7 @@ const promptQuestions = () => {
             default: 'npm test'
         },
         {
-            type: 'input',
+            type: 'list',
             name: 'license',
             message: 'Please select which type of license your project falls under.',
             choices: ['MIT', 'GNU GPLv3', 'unlicensed'],
@@ -89,7 +89,7 @@ const promptQuestions = () => {
             name: 'github',
             message: 'Please enter your github username.',
             validate: githubInput => {
-                if (emailInput)
+                if (githubInput)
                 {return true;}
                 else
                 {console.log('You must enter your github username');
@@ -102,29 +102,29 @@ const promptQuestions = () => {
 }
 
 // TODO: Create a function to write README file
-const writeReadmeFile = data => {
-    fs.writeFile('README.md', data, err => {
-        if (err) {
-            console.log('An error occurred. Try again.');
-        }
-        else {
-            console.log("README created successfully.");
-        }
-    })
-};
+function writeReadme(fileName, data) {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(fileName, data, (err) => {
+            if (err) {
+                reject(err);
+                console.log("Error occurred while writing file.");
+                return;
+            }
+            resolve({
+                ok: true,
+                message: 'File successfully created!',
+            });
+        });
+    });
+}
 
 // TODO: Create a function to initialize app
 function init() {
     promptQuestions()
-    .then(answers => {
-        return generatePage(answers);
-    })
-    .then(data => {
-        return writeReadmeFile(data);
-    })
-    .catch(err => {
-        console.log('An error occurred. Please try again.');
-    })
+    .then((data) => {
+        const newReadme = generateMarkdown(data);
+    writeReadme('./utils/README.md', newReadme);
+    });
 }
 
 // Function call to initialize app
