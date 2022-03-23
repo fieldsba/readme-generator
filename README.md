@@ -10,4 +10,4 @@ https://drive.google.com/file/d/1RTQF52g7PAiirXUJu_qSh27Uw-GlpUzx/view
 https://github.com/fieldsba/readme-generator/
 
 # Sample README.md
-<img src="sampleGeneratedReadme">
+<img src="sampleGeneratedReadmeScreencap.jpg">
