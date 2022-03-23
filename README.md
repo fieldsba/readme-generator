@@ -1,3 +1,13 @@
-# Professional README Generator Starter Code
+# Professional README Generator
 
-[How to create a Professional README](https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide)
+# Description
+Generates a professional README.md document based user input
+
+# Video Walkthrough
+https://drive.google.com/file/d/1RTQF52g7PAiirXUJu_qSh27Uw-GlpUzx/view
+
+# Repository Link
+https://github.com/fieldsba/readme-generator/
+
+# Sample README.md
+<img src="sampleGeneratedReadme">
